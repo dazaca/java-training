@@ -1,0 +1,100 @@
+git checkout -- .  // recuperamos todos los ficheros del directorio en local (incluso si se borraron). Si tenemos ficheros 
+// modificados y los guardamos en local pero no hacemos un commit previamente (precedido por un stage con git add -A), éstos
+// vuelven a su estado previo antes de la modificación (incluso si dichos cambios estaban guardados en local). Además dichos
+// archivos que previamente podrían aparecer como candidatos a comiteo (presentes en el listado en rojo que aparece al hacer
+// "git status") ya no apareceran al hacer el "git status".
+
+git diff --staged
+git add -A          // Añadimos todos los cambios del Staging Area
+                    // (fichero modificados) el repertorio a comitear
+git reset HEAD      // Nos va a permitir desvincular todos esos cambios que se han seleccionado en el Staging Area (con la
+                    // instrucción "git add -A" previos al commit.
+
+git remote set-url origin https://github.com/dazaca/java-training.git
+//// Tenemos una carpeta en local con un proyecto git (repositorio que contiene varios archivos stageados y comiteados) y 
+//// queremos vincularla con un repo nuevo que acabamos de crear en Github. Para ello llevamos  por primera vez todo el stage 
+//// al remoto (estructura pero sin haber subido ningún cambio aún). Para reflejar los cambios echos en el local haremos el PUSH:
+
+git push -u origin master // subimos toda la rama master al origin (descarga de todos los archivos).
+
+
+/////////  una vez echos cambios en el remoto (modifs + crear ramas + etc)
+/////////  podemos recuperar (descargar) los cambios en el local con:
+
+git fetch origin
+
+/// y crear una rama local a partir de la remota nueva (pruebas):
+
+git checkout -b pruebas origin/pruebas
+
+
+// También podemos: 
+
+'git pull origin master' fetches a copy of the master branch from the original repository, and merges it with the current 
+branch you have checked out.
+
+'git pull' by default merges your checked out, local branch with the remote branch you created your local branch from.
+
+---------------------------------------------------------
+> git fetch origin
+remote: Counting objects: 10, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 10 (delta 8), reused 0 (delta 0), pack-reused 0
+Desempaquetando objetos: 100% (10/10), listo.
+Desde https://github.com/dazaca/dev-proyectos
+ * [nueva rama]      pruebas    -> origin/pruebas
+> git checkout -b pruebas origin/pruebas
+Rama 'pruebas' configurada para hacer seguimiento a la rama remota 'pruebas' de 'origin'.
+Cambiado a nueva rama 'pruebas'
+
+---------------------------------------
+
+
+
+
+
+/// ahora fusionamos los cambios con el tronco (master). En este primer
+/// ejemplo, al encontrarnos (en pruebas, nuestra 2a rama) a sólo 1 commit 
+/// adelantado respecto de la la master a la que vamos a hacer el merge,
+/// se hará un "Fast Forward" -> "... cuando se hace un merge 
+/// y el commit de la rama a mezclar esta justo un commit adelantado, simplemente
+/// se hace apuntar la rama en la que se iba a mezclar al commit del merge."
+/// 
+/// Fast Forward = "...  is when, instead of constructing a merge commit, git just 
+/// moves your branch pointer to point at the incoming commit. This commonly occurs 
+/// when doing a git pull without any local changes."
+
+
+/// Ahora hacemos
+git merge master
+
+
+Y en una segunda fase: 
+Merge the changes and update on GitHub.
+
+git checkout master
+git merge --no-ff pruebas
+git push origin master // 
+
+--------------------------------------
+
+/// Para apuntar al destino remoto donde haremos el PUSH:
+
+git remote set-url origin https://github.com/dazaca/dev-proyectos.git
+
+/// Verificamos que se ha cambiado bien:
+
+git remote -v
+
+/// Ahora podemos hacer PUSH sobre el remoto en el tronco (rama master)
+
+git push origin master
+
+/// Última modif para subir el cambio con PUSH al GitHub pero esta vez con VS code (Commit 8)... :)
+/// Cada vez que hacemos una modif podemos validarlos para comiteo (es el equivalente al comando
+/// stage all the file(s) con "git add -A").
+
+
+
+/// Commit 9: se hará este añadido de comentario para probar git push, publicándolo como commit locale
+/// que luego recuperaremos con un fetch/pull desde GitHub.
