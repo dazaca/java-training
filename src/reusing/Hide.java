@@ -31,12 +31,25 @@ class Bart extends Homer{
 	
 }
 
+class Lisa extends Homer{
+	
+	//@Override void doh(Milhouse m) {
+	void doh(Milhouse m) {
+		
+		System.out.println("doh(Milhouse)");
+
+	}
+	
+}
+
 public class Hide {
 
 	
 	public static void main(String[] args) {
-
+		
+	Lisa l = new Lisa();
 	Bart b = new Bart();
+	l.doh('d');
 	b.doh(1);
 	b.doh('x');
 	b.doh(1.0f);
