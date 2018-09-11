@@ -1,3 +1,5 @@
+// reusing/E15_ProtectedTest_call
+
 package reusing;
 import reusing_2.E15_ProtectedTest;
 
@@ -18,8 +20,11 @@ public class E15_ProtectedTest_call {
 		// E15_ProtectedTest pt = new E15_ProtectedTest();
 		// pt.protectedMethod(); --> código no válido porque el método es PROTECTED
 		
+		
+		// new InheritProtected().callProtected(); --> short code. See correct version right below:
 		InheritProtected ip = new InheritProtected();
 		ip.callProtected();
+		
 	}
 
 }
