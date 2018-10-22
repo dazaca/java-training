@@ -1,3 +1,14 @@
+
+git reset --hard HEAD^  // Deshacemos último commit volviendo al penúltimo.
+git reset --hard HEAD^2  // Deshacemos los dos últimos commits volviendo al antepenúltimo.
+git push origin +master // A difierencia del git push origin master, éste comando fuerza el commit al servidor (útil
+                        // cuando la rama en el remoto (GITHUB) esta adelantada de 1 (o varios) y queremos que desaparezca.
+
+
+
+
+
+
 git checkout -- .  // recuperamos todos los ficheros del directorio en local (incluso si se borraron). Si tenemos ficheros 
 // modificados y los guardamos en local pero no hacemos un commit previamente (precedido por un stage con git add -A), éstos
 // vuelven a su estado previo antes de la modificación (incluso si dichos cambios estaban guardados en local). Además dichos
