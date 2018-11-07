@@ -1,3 +1,10 @@
+git rm -r --cached /DIRECTORY/DIRECTORY // Desvincular un directorio del seguimiento de git. Ha de ir seguido de:
+git update-index --assume-unchanged 
+
+// Si queremos eliminar del todo el directorio oculto .git, sólo hay que borrarlo:
+
+rm -rf .git 
+
 
 git reset --hard HEAD^  // Deshacemos último commit volviendo al penúltimo.
 git reset --hard HEAD^2  // Deshacemos los dos últimos commits volviendo al antepenúltimo.
